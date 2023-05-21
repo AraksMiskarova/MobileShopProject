@@ -15,7 +15,8 @@ const validateRegistrationForm = require("../validation/validationHelper");
 
 // Load helper for creating correct query to save customer to DB
 const queryCreator = require("../commonHelpers/queryCreator");
-
+// Load Session model
+const sessions = require("../models/Session");
 // Controller for creating customer and saving to DB
 exports.createCustomer = (req, res, next) => {
   console.log("req.body>>>>>", req.body);
@@ -104,7 +105,7 @@ exports.loginCustomer = async (req, res, next) => {
       }
 
       // Check Password
-      bcrypt.compare(password, customer.password).then((isMatch) => {
+      bcrypt.compare(password, customer.password).then(async(isMatch) => {
         if (isMatch) {
           // Customer Matched
           const payload = {
@@ -113,19 +114,35 @@ exports.loginCustomer = async (req, res, next) => {
             lastName: customer.lastName,
             isAdmin: customer.isAdmin,
           }; // Create JWT Payload
-
+          
           // Sign Token
-          jwt.sign(
+          const token = jwt.sign(
             payload,
             keys.secretOrKey,
             { expiresIn: 36000 },
-            (err, token) => {
-              res.json({
-                success: true,
-                token: "Bearer " + token,
-              });
-            },
           );
+
+          const newSession = await sessions.create({
+            sid: customer.id,
+          });
+          
+          // Create JWTRefresh 
+          const payloadRefresh = {
+            uid: customer.id,
+            sid: newSession._id
+          }; 
+
+          const refreshToken =  jwt.sign(
+            payloadRefresh,
+            keys.secretOrKey,
+            { expiresIn: 2678400 },
+          );
+
+          return res.json({
+            success: true,
+            token: "Bearer " + token,
+            refreshToken:refreshToken
+          });
         } else {
           errors.password = "Password incorrect";
           return res.status(400).json(errors);
