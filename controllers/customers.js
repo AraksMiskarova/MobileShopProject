@@ -123,7 +123,7 @@ exports.loginCustomer = async (req, res, next) => {
           );
 
           const newSession = await sessions.create({
-            sid: customer.id,
+            sid: customer._id,
           });
           
           // Create JWTRefresh 
@@ -132,7 +132,7 @@ exports.loginCustomer = async (req, res, next) => {
             sid: newSession._id
           }; 
 
-          const refreshToken =  jwt.sign(
+          const refreshToken = jwt.sign(
             payloadRefresh,
             keys.secretOrKey,
             { expiresIn: 2678400 },
@@ -141,7 +141,7 @@ exports.loginCustomer = async (req, res, next) => {
           return res.json({
             success: true,
             token: "Bearer " + token,
-            refreshToken:refreshToken
+            refreshToken: refreshToken
           });
         } else {
           errors.password = "Password incorrect";
