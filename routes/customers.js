@@ -11,6 +11,11 @@ const {
   updatePassword,
 } = require("../controllers/customers");
 
+//Import controller refresh
+const {
+  refreshToken,
+} = require("../controllers/refreshToken");
+
 // @route   POST /customers
 // @desc    Register customer
 // @access  Public
@@ -20,6 +25,14 @@ router.post("/", createCustomer);
 // @desc    Login Customer / Returning JWT Token
 // @access  Public
 router.post("/login", loginCustomer);
+
+// @route   POST /customers/refresh-token
+// @desc    Refresh Token Customer / Returning JWT Token
+// @access  Private
+router.post("/refresh-token", 
+  //  passport.authenticate("jwt", { session: false }), 
+   refreshToken,
+);
 
 // @route   GET /
 // @desc    Return current customer
