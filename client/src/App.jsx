@@ -1,23 +1,24 @@
-import { React, useState, useEffect } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { React, useEffect, useState } from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 import Navbar from './components/MultiComponentsIC/Navbar/Navbar';
 import Footer from './components/Simple/Footer/Footer';
-import HomePage from './pages/HomePage/HomePage';
 import CheckoutPage from './pages/Checkout/CheckoutPage';
+import ContactPage from './pages/ContactPage/ContactPage';
+import HomePage from './pages/HomePage/HomePage';
 import ItemCardPage from './pages/ItemCardPage/ItemCardPage';
 import ItemsListPage from './pages/ItemsListPage/ItemsListPage';
-import WishlistPage from './pages/WishlistPage/WishlistPage';
-import LogInPage from './pages/LogInPage/LogInPage';
-import SigInPage from './pages/SigInPage/SigInPage';
 import LoadingPage from './pages/LoadingPage/LoadingPage';
-import ContactPage from './pages/ContactPage/ContactPage';
+import LogInPage from './pages/LogInPage/LogInPage';
+import MenageProducts from './pages/MenageProducts/MenageProducts';
+import SigInPage from './pages/SigInPage/SigInPage';
 import SuccessfulOrder from './pages/SuccessfulOrderPage/SuccessfulOrder';
+import WishlistPage from './pages/WishlistPage/WishlistPage';
 
+import { fetchCartProducts } from './redux/slices/cartBackEnd';
 import { setSelectedProducts } from './redux/slices/cartLocal';
 import { setSelectedProductsFav } from './redux/slices/wishList';
-import { fetchCartProducts } from './redux/slices/cartBackEnd';
 
 import { isToken } from './helpers/authentication/authentication';
 import { fetchCustomerData } from './redux/slices/customer';
@@ -79,6 +80,7 @@ function App() {
         <Route path="/signup" element={<SigInPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/successful-order" element={<SuccessfulOrder />} />
+        <Route path="/menage-products" element={<MenageProducts />} />
       </Routes>
       <Footer />
     </>

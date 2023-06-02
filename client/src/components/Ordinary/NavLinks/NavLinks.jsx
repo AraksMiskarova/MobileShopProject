@@ -1,12 +1,12 @@
+import MenuIcon from '@mui/icons-material/Menu';
+import { IconButton, Menu, MenuItem, useMediaQuery } from '@mui/material';
+import PropTypes from 'prop-types';
 import { React, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import MenuIcon from '@mui/icons-material/Menu';
-import { useMediaQuery, IconButton, Menu, MenuItem } from '@mui/material';
 
-import ButtonNav from '../../UI/Buttons/ButtonNav/ButtonNav';
-import NavIcon from '../../Simple/NavIcon/NavIcon';
 import MobileModalSearch from '../../MultiComponentsIC/MobileModalSearch/MobileModalSearch';
+import NavIcon from '../../Simple/NavIcon/NavIcon';
+import ButtonNav from '../../UI/Buttons/ButtonNav/ButtonNav';
 
 import style from './NavLinks.module.scss';
 
@@ -45,6 +45,9 @@ function NavLinks({
           </NavLink>
           <NavLink to="/contact" className={style.link}>
             <ButtonNav label="Contact" />
+          </NavLink>
+          <NavLink to="/menage-products" className={style.link}>
+            <ButtonNav label="Menage products" />
           </NavLink>
         </div>
       ) : (
@@ -97,6 +100,11 @@ function NavLinks({
             >
               <NavLink to="/contact" className={style.link}>
                 <ButtonNav label="Contact" />
+              </NavLink>
+            </MenuItem>
+            <MenuItem style={{ marginLeft: '25px' }} onClick={handleClose}>
+              <NavLink to="/menage-products" className={style.link}>
+                <ButtonNav label="Menage products" />
               </NavLink>
             </MenuItem>
             <MenuItem onClick={handleClose} style={{ marginBottom: 20 }}>
