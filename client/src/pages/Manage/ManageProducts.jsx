@@ -14,7 +14,7 @@ function a11yProps(index) {
   };
 }
 
-function MenageProducts() {
+function ManageProducts() {
   const navigate = useNavigate();
   const [value, setValue] = React.useState(0);
   const { isAdmin } = useAccess();
@@ -22,10 +22,10 @@ function MenageProducts() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
+  console.log('permission', permission);
   useEffect(() => {
     if (!permission) {
-      navigate('/');
+      return navigate('/');
     }
   }, []);
 
@@ -55,4 +55,4 @@ function MenageProducts() {
   );
 }
 
-export default MenageProducts;
+export default ManageProducts;
