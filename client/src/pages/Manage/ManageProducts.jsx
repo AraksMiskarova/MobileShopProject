@@ -22,7 +22,7 @@ function ManageProducts() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  console.log('permission', permission);
+
   useEffect(() => {
     if (!permission) {
       return navigate('/');
