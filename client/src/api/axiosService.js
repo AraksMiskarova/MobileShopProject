@@ -12,7 +12,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
   config => {
     const token = TokenService.getLocalAccessToken();
-
+    // eslint-disable-next-line no-param-reassign
     config.headers.Authorization = `${token}`;
 
     return config;
@@ -32,7 +32,7 @@ instance.interceptors.response.use(
     if (err.response && err.response.status === 401) {
       try {
         if (!responsePromise) {
-          responsePromise = axios.post('api/customer/refreshToken', {
+          responsePromise = axios.post('api/customers/refresh-token', {
             refreshToken: TokenService.getLocalRefreshToken(),
           });
         }
@@ -46,7 +46,10 @@ instance.interceptors.response.use(
         return instance(originalConfig);
       } catch (_error) {
         console.log('_error', _error);
-        //Logout User
+        // Logout User
+        TokenService.removeLocalRefreshToken();
+        TokenService.removeLocalAccessToken();
+        window.location.href = '/login';
         return Promise.reject(_error);
       }
     }

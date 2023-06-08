@@ -39,7 +39,7 @@ exports.refreshToken = (req, res) => {
               const newToken = jwt.sign(
                 payload,
                 keys.secretOrKey,
-                { expiresIn: 36000 },
+                { expiresIn: 10 },
               );
               
                // New Session for private customer 
@@ -56,7 +56,7 @@ exports.refreshToken = (req, res) => {
               const refreshToken = jwt.sign(
                 payloadRefresh,
                 keys.secretOrKey,
-                { expiresIn: 2678400 },
+                { expiresIn: 30 },
               );
     
               return res.json({

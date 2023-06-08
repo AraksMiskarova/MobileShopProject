@@ -27,7 +27,7 @@ router.post("/", createCustomer);
 // @access  Public
 router.post("/login", loginCustomer);
 
-// @route   POST /customers/refresh-token
+// @route   POST /customer
 // @desc    Refresh Token Customer / Returning JWT Token
 // @access  Private
 router.post("/refresh-token", 
@@ -48,6 +48,7 @@ router.get(
 // @access  Private
 router.get(
   "/",
+  passport.authenticate("jwt-admin", { session: false }),
   getCustomers,
 );
 

@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { createAsyncReducer } from '../../helpers/toolkit/extraReducers';
 
@@ -11,7 +11,8 @@ export const fetchUserToken = createAsyncThunk(
           'Content-Type': 'application/json',
         },
       });
-      const { token } = data;
+      const { token, refreshToken } = data;
+      localStorage.setItem('refreshToken', refreshToken);
       return token;
     } catch (error) {
       return error;

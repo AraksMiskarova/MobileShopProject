@@ -1,19 +1,19 @@
 const getLocalRefreshToken = () => {
-  const refreshToken = JSON.parse(localStorage.getItem('refresh_token'));
+  const refreshToken = localStorage.getItem('refreshToken');
   return refreshToken;
 };
 
 const getLocalAccessToken = () => {
-  const accessToken = JSON.parse(localStorage.getItem('token'));
+  const accessToken = localStorage.getItem('token');
   return accessToken;
 };
 
 const updateLocalAccessToken = newToken => {
-  localStorage.setItem('token', JSON.stringify(newToken));
+  localStorage.setItem('token', newToken);
 };
 
 const updateLocalRefreshToken = newToken => {
-  localStorage.setItem('refresh_token', JSON.stringify(newToken));
+  localStorage.setItem('refreshToken', newToken);
 };
 
 const removeLocalAccessToken = () => {
@@ -21,7 +21,7 @@ const removeLocalAccessToken = () => {
 };
 
 const removeLocalRefreshToken = () => {
-  localStorage.removeItem('refresh_token');
+  localStorage.removeItem('refreshToken');
 };
 
 const TokenService = {

@@ -1,17 +1,17 @@
-import { React, useState } from 'react';
-import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import { React, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate, NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 import { fetchUserToken } from '../../redux/slices/authorization';
 
-import style from './LogInpage.module.scss';
 import { fetchCartProducts } from '../../redux/slices/cartBackEnd';
 import { fetchCustomerData } from '../../redux/slices/customer';
+import style from './LogInpage.module.scss';
 
 function LogInPage() {
   const dispatch = useDispatch();

@@ -119,7 +119,7 @@ exports.loginCustomer = async (req, res, next) => {
           const token = jwt.sign(
             payload,
             keys.secretOrKey,
-            { expiresIn: 36000 },
+            { expiresIn: 30 },
           );
 
           const newSession = await sessions.create({
