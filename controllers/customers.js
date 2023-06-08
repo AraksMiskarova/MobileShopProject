@@ -285,3 +285,26 @@ exports.updatePassword = (req, res) => {
     });
   });
 };
+
+// Controller for getting customers
+exports.getCustomers = (req, res ) => {
+  Customer.find().then((customer)=>{
+    const responseUsers = []
+    customer.forEach((customer)=>{
+      responseUsers.push({ 
+        customerNo:customer.customerNo,
+        email:customer.email,
+        enabled: customer.enabled,
+        firstName: customer.firstName,
+        isAdmin: customer.isAdmin,
+        lastName: customer.lastName,
+        login: customer.login,
+      })
+    })
+    res.json(responseUsers)
+  }).catch(err =>{
+    res.status(400).json({
+      message: `Error happened on server: "${err}" `,
+    })
+  })
+};
