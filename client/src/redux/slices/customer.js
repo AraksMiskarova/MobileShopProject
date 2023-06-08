@@ -1,7 +1,7 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { fetchData } from '../../helpers/toolkit/fetches';
 import { createAsyncReducer } from '../../helpers/toolkit/extraReducers';
+import { fetchData } from '../../helpers/toolkit/fetches';
 
 export const fetchCustomerData = createAsyncThunk(
   'customer/fetchCustomer',
@@ -9,6 +9,10 @@ export const fetchCustomerData = createAsyncThunk(
     return fetchData(`/api/customers/customer`, 'get');
   },
 );
+
+export const getCustomers = createAsyncThunk('customer', async () => {
+  return fetchData(`/api/customers`, 'get');
+});
 
 const initialState = {
   customer: null,
@@ -31,7 +35,10 @@ const customerSlice = createSlice({
       .addCase(
         fetchCustomerData.rejected,
         createAsyncReducer('customer').rejected,
-      );
+      )
+      .addCase(getCustomers.pending, createAsyncReducer('customer').pending)
+      .addCase(getCustomers.fulfilled, createAsyncReducer('customer').fulfilled)
+      .addCase(getCustomers.rejected, createAsyncReducer('customer').rejected);
   },
 });
 

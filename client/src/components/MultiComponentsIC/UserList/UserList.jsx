@@ -2,10 +2,7 @@ import { Container } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useEffect } from 'react';
-import {
-  customerState,
-  fetchCustomerData,
-} from '../../../redux/slices/customer';
+import { customerState, getCustomers } from '../../../redux/slices/customer';
 import style from '../ProductList/ProductList.module.scss';
 import TableUsers from './TableUser';
 
@@ -16,7 +13,7 @@ function ProductList() {
 
   useEffect(() => {
     const url = decodeURIComponent(urlParams.toString().replace(/%2C/g, ','));
-    dispatch(fetchCustomerData(url));
+    dispatch(getCustomers(url));
   }, []);
 
   return (
