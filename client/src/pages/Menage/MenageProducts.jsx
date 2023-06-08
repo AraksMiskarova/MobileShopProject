@@ -18,13 +18,13 @@ function MenageProducts() {
   const navigate = useNavigate();
   const [value, setValue] = React.useState(0);
   const { isAdmin } = useAccess();
-  const accessPage = isAdmin();
+  const permission = isAdmin();
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   useEffect(() => {
-    if (!accessPage) {
+    if (!permission) {
       navigate('/');
     }
   }, []);
