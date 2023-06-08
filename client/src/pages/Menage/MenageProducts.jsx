@@ -19,7 +19,7 @@ function MenageProducts() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  console.log('value', value);
+
   return (
     <Box
       sx={{

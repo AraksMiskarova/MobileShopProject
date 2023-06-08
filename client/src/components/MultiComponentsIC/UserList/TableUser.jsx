@@ -12,7 +12,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 function TableCustomers({ items }) {
-  console.log('items', items);
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
