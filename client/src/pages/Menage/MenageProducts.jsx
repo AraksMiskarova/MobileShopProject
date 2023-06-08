@@ -39,7 +39,7 @@ function MenageProducts() {
         <Tab label="Product" {...a11yProps(0)} />
         <Tab label="Users" {...a11yProps(1)} />
       </Tabs>
-      <ProductList value={value} />
+      <ProductList />
     </Box>
   );
 }
