@@ -14,14 +14,13 @@ function ProductList() {
     dispatch(getCustomers());
   }, []);
 
-  console.log('selectedUsers', selectedCustomers);
   return (
     // eslint-disable-next-line react/react-in-jsx-scope
     <Container maxWidth="lg" className={style.container}>
       {selectedCustomers.status === 'loading' && 'loading'}
-      {selectedCustomers.status === 'loaded' && (
+      {selectedCustomers.customers && (
         // eslint-disable-next-line react/react-in-jsx-scope
-        <TableCustomers items={selectedCustomers.customer} />
+        <TableCustomers items={selectedCustomers.customers} />
       )}
     </Container>
   );

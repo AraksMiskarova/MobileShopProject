@@ -1,10 +1,11 @@
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
-
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ProductList from '../../components/MultiComponentsIC/ProductList/ProductList';
 import UserList from '../../components/MultiComponentsIC/UserList/UserList';
+import { useAccess } from '../../hook/useAccess';
 
 function a11yProps(index) {
   return {
@@ -14,11 +15,19 @@ function a11yProps(index) {
 }
 
 function MenageProducts() {
+  const navigate = useNavigate();
   const [value, setValue] = React.useState(0);
-
+  const { isAdmin } = useAccess();
+  const accessPage = isAdmin();
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  useEffect(() => {
+    if (!accessPage) {
+      navigate('/');
+    }
+  }, []);
 
   return (
     <Box
