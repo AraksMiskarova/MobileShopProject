@@ -1,6 +1,6 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchData } from '../../helpers/toolkit/fetches';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { createAsyncReducer } from '../../helpers/toolkit/extraReducers';
+import { fetchData } from '../../helpers/toolkit/fetches';
 
 export const fetchFilterPhones = createAsyncThunk(
   'filterProducts/fetchFilterProducts',
