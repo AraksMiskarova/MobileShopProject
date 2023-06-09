@@ -4,6 +4,7 @@ import Tabs from '@mui/material/Tabs';
 
 import React from 'react';
 import ProductList from '../../components/MultiComponentsIC/ProductList/ProductList';
+import UserList from '../../components/MultiComponentsIC/UserList/UserList';
 
 function a11yProps(index) {
   return {
@@ -18,7 +19,7 @@ function MenageProducts() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
+  console.log('value', value);
   return (
     <Box
       sx={{
@@ -39,7 +40,8 @@ function MenageProducts() {
         <Tab label="Product" {...a11yProps(0)} />
         <Tab label="Users" {...a11yProps(1)} />
       </Tabs>
-      <ProductList />
+      {value === 0 && <ProductList />}
+      {value === 1 && <UserList />}
     </Box>
   );
 }
