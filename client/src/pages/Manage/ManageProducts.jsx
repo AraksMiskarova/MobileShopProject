@@ -1,11 +1,9 @@
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+
+import React from 'react';
 import ProductList from '../../components/MultiComponentsIC/ProductList/ProductList';
-import UserList from '../../components/MultiComponentsIC/UserList/UserList';
-import { useAccess } from '../../hook/useAccess';
 
 function a11yProps(index) {
   return {
@@ -14,20 +12,12 @@ function a11yProps(index) {
   };
 }
 
-function ManageProducts() {
-  const navigate = useNavigate();
+function MenageProducts() {
   const [value, setValue] = React.useState(0);
-  const { isAdmin } = useAccess();
-  const permission = isAdmin();
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
-  useEffect(() => {
-    if (!permission) {
-      return navigate('/');
-    }
-  }, []);
 
   return (
     <Box
@@ -49,10 +39,9 @@ function ManageProducts() {
         <Tab label="Product" {...a11yProps(0)} />
         <Tab label="Users" {...a11yProps(1)} />
       </Tabs>
-      {value === 0 && <ProductList />}
-      {value === 1 && <UserList />}
+      <ProductList />
     </Box>
   );
 }
 
-export default ManageProducts;
+export default MenageProducts;
