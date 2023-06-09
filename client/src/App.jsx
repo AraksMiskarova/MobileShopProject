@@ -11,7 +11,7 @@ import ItemCardPage from './pages/ItemCardPage/ItemCardPage';
 import ItemsListPage from './pages/ItemsListPage/ItemsListPage';
 import LoadingPage from './pages/LoadingPage/LoadingPage';
 import LogInPage from './pages/LogInPage/LogInPage';
-import MenageProducts from './pages/Menage/MenageProducts';
+import MenageProducts from './pages/MenageProducts/MenageProducts';
 import SigInPage from './pages/SigInPage/SigInPage';
 import SuccessfulOrder from './pages/SuccessfulOrderPage/SuccessfulOrder';
 import WishlistPage from './pages/WishlistPage/WishlistPage';

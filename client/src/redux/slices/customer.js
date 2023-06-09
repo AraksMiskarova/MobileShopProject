@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-
 import { createAsyncReducer } from '../../helpers/toolkit/extraReducers';
 import { fetchData } from '../../helpers/toolkit/fetches';
 

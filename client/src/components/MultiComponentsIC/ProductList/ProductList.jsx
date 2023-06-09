@@ -1,17 +1,34 @@
-import { Container } from '@mui/material';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { stateSelectedProducts } from '../../../redux/slices/cartLocal';
+import { fetchFilterPhones } from '../../../redux/slices/filterProducts';
 
-import { useEffect } from 'react';
-import {
-  fetchFilterPhones,
-  filterProdState,
-} from '../../../redux/slices/filterProducts';
-import style from './ProductList.module.scss';
-import TableProducts from './TableProducts';
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
 
-function ProductList() {
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`vertical-tabpanel-${index}`}
+      aria-labelledby={`vertical-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+function ProductList({ value }) {
   const dispatch = useDispatch();
-  const selectedProducts = useSelector(filterProdState);
+  const selectedProducts = useSelector(stateSelectedProducts);
   const urlParams = new URLSearchParams();
 
   useEffect(() => {
@@ -19,16 +36,23 @@ function ProductList() {
     dispatch(fetchFilterPhones(url));
   }, []);
 
+  console.log('selectedProducts', selectedProducts);
+
   return (
-    // eslint-disable-next-line react/react-in-jsx-scope
-    <Container maxWidth="lg" className={style.container}>
-      {!selectedProducts?.products?.products && 'loading'}
-      {selectedProducts?.products?.products && (
-        // eslint-disable-next-line react/react-in-jsx-scope
-        <TableProducts items={selectedProducts.products.products} />
-      )}
-    </Container>
+    <TabPanel value={value} index={value}>
+      {selectedProducts.length && JSON.parse(selectedProducts)}
+    </TabPanel>
   );
 }
+
+ProductList.propTypes = {
+  value: PropTypes.number.isRequired,
+};
+
+TabPanel.propTypes = {
+  children: PropTypes.node.isRequired,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
 
 export default ProductList;
