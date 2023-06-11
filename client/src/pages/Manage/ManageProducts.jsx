@@ -14,18 +14,18 @@ function a11yProps(index) {
   };
 }
 
-function MenageProducts() {
+function ManageProducts() {
   const navigate = useNavigate();
   const [value, setValue] = React.useState(0);
   const { isAdmin } = useAccess();
-  const accessPage = isAdmin();
+  const permission = isAdmin();
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   useEffect(() => {
-    if (!accessPage) {
-      navigate('/');
+    if (!permission) {
+      return navigate('/');
     }
   }, []);
 
@@ -55,4 +55,4 @@ function MenageProducts() {
   );
 }
 
-export default MenageProducts;
+export default ManageProducts;
