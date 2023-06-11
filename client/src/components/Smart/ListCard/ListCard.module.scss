@@ -37,23 +37,22 @@
 
     .typography span:first-child::-webkit-scrollbar {
       height: 3px;
-      width: 2px; /* ширина */
-      background-color: #ffffff; /* цвет фона */
+      width: 2px;
+      background-color: #ffffff;
       cursor: pointer;
     }
 
-    /* Стили для полосы прокрутки */
     .typography span:first-child::-webkit-scrollbar-thumb {
-      background-color: #e3e3e3; /* цвет */
+      background-color: #e3e3e3;
       height: 2px;
-      border-radius: 2px; /* радиус границы */
+      border-radius: 2px;
       cursor: pointer;
     }
 
-    /* Стили для кнопки прокрутки */
+
     .typography span:first-child::-webkit-scrollbar-button {
-      background-color: #fff; /* цвет */
-      display: none; /* скрыть кнопку */
+      background-color: #fff;
+      display: none;
       cursor: pointer;
     }
 
@@ -90,7 +89,7 @@
 
   .cardContentSkeleton span:last-child {
     margin-left: auto;
-    margin-right: 0px;
+    margin-right: 0;
   }
 
   .cardButtonSkeleton {
@@ -99,7 +98,7 @@
 
   .cardButtonSkeleton span:last-child {
     margin-left: auto;
-    margin-right: 0px;
+    margin-right: 0;
   }
 }
 

@@ -7,9 +7,13 @@ const {
   createCustomer,
   loginCustomer,
   getCustomer,
+  getCustomers,
   editCustomerInfo,
   updatePassword,
 } = require("../controllers/customers");
+
+//Import controller refresh
+const { refreshToken } = require("../controllers/refreshToken");
 
 // @route   POST /customers
 // @desc    Register customer
@@ -21,13 +25,30 @@ router.post("/", createCustomer);
 // @access  Public
 router.post("/login", loginCustomer);
 
+// @route   POST /customer
+// @desc    Refresh Token Customer / Returning JWT Token
+// @access  Private
+router.post(
+  "/refresh-token",
+  //  passport.authenticate("jwt", { session: false }),
+  refreshToken
+);
+
 // @route   GET /
 // @desc    Return current customer
 // @access  Private
 router.get(
   "/customer",
   passport.authenticate("jwt", { session: false }),
-  getCustomer,
+  getCustomer
+);
+// @route   GET /customers
+// @desc    Return current customer
+// @access  Private
+router.get(
+  "/",
+  passport.authenticate("jwt-admin", { session: false }),
+  getCustomers
 );
 
 // @route   PUT /customers
@@ -36,7 +57,7 @@ router.get(
 router.put(
   "/",
   passport.authenticate("jwt", { session: false }),
-  editCustomerInfo,
+  editCustomerInfo
 );
 
 // @route   POST /customers/profile/update-password
@@ -45,7 +66,7 @@ router.put(
 router.put(
   "/password",
   passport.authenticate("jwt", { session: false }),
-  updatePassword,
+  updatePassword
 );
 
 module.exports = router;

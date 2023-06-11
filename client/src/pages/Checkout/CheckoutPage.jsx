@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Tab, Container } from '@mui/material';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
-import FormContacts from '../../components/Simple/FormCheckoutPage/FormContacts';
-import ProductOrderInfo from '../../components/Simple/ProductOrderInfo/ProductOrderInfo';
-import DeliveryPaymentInfo from '../../components/Simple/DeliveryPaymentInfo/DeliveryPaymentInfo';
+import FormContacts from '../../components/MultiComponentsIC/FormCheckoutPage/FormContacts';
+import ProductOrderInfo from '../../components/MultiComponentsIC/ProductOrderInfo/ProductOrderInfo';
+import DeliveryPaymentInfo from '../../components/Smart/DeliveryPaymentInfo/DeliveryPaymentInfo';
 
 export default function CheckoutPage() {
   const [value, setValue] = useState('1');

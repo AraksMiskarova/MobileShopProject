@@ -15,7 +15,8 @@ const validateRegistrationForm = require("../validation/validationHelper");
 
 // Load helper for creating correct query to save customer to DB
 const queryCreator = require("../commonHelpers/queryCreator");
-
+// Load Session model
+const sessions = require("../models/Session");
 // Controller for creating customer and saving to DB
 exports.createCustomer = (req, res, next) => {
   console.log("req.body>>>>>", req.body);
@@ -67,7 +68,7 @@ exports.createCustomer = (req, res, next) => {
             .catch((err) =>
               res.status(400).json({
                 message: `Error happened on server: "${err}" `,
-              }),
+              })
             );
         });
       });
@@ -75,7 +76,7 @@ exports.createCustomer = (req, res, next) => {
     .catch((err) =>
       res.status(400).json({
         message: `Error happened on server: "${err}" `,
-      }),
+      })
     );
 };
 
@@ -104,7 +105,7 @@ exports.loginCustomer = async (req, res, next) => {
       }
 
       // Check Password
-      bcrypt.compare(password, customer.password).then((isMatch) => {
+      bcrypt.compare(password, customer.password).then(async (isMatch) => {
         if (isMatch) {
           // Customer Matched
           const payload = {
@@ -115,17 +116,27 @@ exports.loginCustomer = async (req, res, next) => {
           }; // Create JWT Payload
 
           // Sign Token
-          jwt.sign(
-            payload,
-            keys.secretOrKey,
-            { expiresIn: 36000 },
-            (err, token) => {
-              res.json({
-                success: true,
-                token: "Bearer " + token,
-              });
-            },
-          );
+          const token = jwt.sign(payload, keys.secretOrKey, { expiresIn: 30 });
+
+          const newSession = await sessions.create({
+            sid: customer._id,
+          });
+
+          // Create JWTRefresh
+          const payloadRefresh = {
+            uid: customer.id,
+            sid: newSession._id,
+          };
+
+          const refreshToken = jwt.sign(payloadRefresh, keys.secretOrKey, {
+            expiresIn: 2678400,
+          });
+
+          return res.json({
+            success: true,
+            token: "Bearer " + token,
+            refreshToken: refreshToken,
+          });
         } else {
           errors.password = "Password incorrect";
           return res.status(400).json(errors);
@@ -135,7 +146,7 @@ exports.loginCustomer = async (req, res, next) => {
     .catch((err) =>
       res.status(400).json({
         message: `Error happened on server: "${err}" `,
-      }),
+      })
     );
 };
 
@@ -202,19 +213,19 @@ exports.editCustomerInfo = (req, res) => {
       Customer.findOneAndUpdate(
         { _id: req.user.id },
         { $set: updatedCustomer },
-        { new: true },
+        { new: true }
       )
         .then((customer) => res.json(customer))
         .catch((err) =>
           res.status(400).json({
             message: `Error happened on server: "${err}" `,
-          }),
+          })
         );
     })
     .catch((err) =>
       res.status(400).json({
         message: `Error happened on server:"${err}" `,
-      }),
+      })
     );
 };
 
@@ -249,7 +260,7 @@ exports.updatePassword = (req, res) => {
                   password: newPassword,
                 },
               },
-              { new: true },
+              { new: true }
             )
               .then((customer) => {
                 res.json({
@@ -260,11 +271,36 @@ exports.updatePassword = (req, res) => {
               .catch((err) =>
                 res.status(400).json({
                   message: `Error happened on server: "${err}" `,
-                }),
+                })
               );
           });
         });
       }
     });
   });
+};
+
+// Controller for getting customers
+exports.getCustomers = (req, res) => {
+  Customer.find()
+    .then((customer) => {
+      const responseUsers = [];
+      customer.forEach((customer) => {
+        responseUsers.push({
+          customerNo: customer.customerNo,
+          email: customer.email,
+          enabled: customer.enabled,
+          firstName: customer.firstName,
+          isAdmin: customer.isAdmin,
+          lastName: customer.lastName,
+          login: customer.login,
+        });
+      });
+      res.json(responseUsers);
+    })
+    .catch((err) => {
+      res.status(400).json({
+        message: `Error happened on server: "${err}" `,
+      });
+    });
 };

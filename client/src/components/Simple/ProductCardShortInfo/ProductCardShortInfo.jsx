@@ -1,7 +1,6 @@
 import React from 'react';
 import { ListItem, IconButton, Divider } from '@mui/material';
 import { Close } from '@mui/icons-material';
-import BasketQuantity from '../BasketQuantity/BasketQuantity';
 import style from './ProductCardShortInfo.module.scss';
 
 function ProductCardShortInfo() {

@@ -1,7 +1,7 @@
 import { React } from 'react';
 
 import { Container, Grid } from '@mui/material';
-import Map from '../../components/Simple/Map/Map';
+import Map from '../../components/Ordinary/Map/Map';
 import style from './ContactPage.module.scss';
 
 function ContactPage() {
@@ -28,7 +28,7 @@ function ContactPage() {
             <span>©2022–2023 MobiStore</span>
           </p>
         </Grid>
-        <Grid item className={style.mapWrapp} textAlign="center">
+        <Grid item textAlign="center">
           <Map />
         </Grid>
       </Grid>

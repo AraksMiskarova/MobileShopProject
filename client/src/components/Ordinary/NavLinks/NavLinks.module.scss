@@ -1,0 +1,32 @@
+.root {
+  display: flex;
+}
+
+.button {
+  min-width: 150px;
+}
+
+.link {
+  text-decoration: none;
+  width: 100%;
+}
+
+.rootMob {
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+@media (max-width: 768px) {
+  .mainRoot {
+    margin-left: auto;
+    margin-right: 0;
+  }
+}
+
+
+@media (max-width: 1300px) {
+  .link {
+    padding: 0;
+    margin: 0;
+  }
+}

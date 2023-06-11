@@ -1,39 +1,53 @@
-import { React, useState } from 'react';
-import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import { React, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate, NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
-import { fetchUserToken } from '../../redux/slices/auth';
+import { fetchUserToken } from '../../redux/slices/authorization';
 
+import { fetchCartProducts } from '../../redux/slices/cartBackEnd';
+import { fetchCustomerData } from '../../redux/slices/customer';
 import style from './LogInpage.module.scss';
-import { fetchCartProducts } from '../../redux/slices/cartBack';
 
 function LogInPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [passError, setPassError] = useState([]);
+  const [status, setStatus] = useState(false);
 
   const onSubmit = async values => {
+    setStatus(true);
     const data = await dispatch(fetchUserToken(values));
     if (!data.payload) {
+      setStatus(false);
       return setPassError(
         'Oooops,something went wrong, please try again later.',
       );
     }
 
     if (data.payload && data.payload.name === 'AxiosError') {
+      setStatus(false);
       return setPassError('Invalid Login, Email or Password');
     }
 
     if (data.payload) {
-      dispatch(fetchCartProducts(data.payload));
-      navigate('/');
-      return window.localStorage.setItem('token', data.payload);
+      setStatus(false);
+      window.localStorage.setItem('token', data.payload);
+      dispatch(fetchCustomerData())
+        .then(customer => {
+          dispatch(fetchCartProducts());
+          const customerData = JSON.stringify(customer.payload._id);
+          window.localStorage.setItem('customer', customerData);
+          navigate('/');
+        })
+        .catch(error => {
+          console.warn('Error fetching customer data:', error);
+        });
     }
   };
 
@@ -88,7 +102,7 @@ function LogInPage() {
             size="large"
             variant="contained"
             fullWidth
-            disabled={!isValid}
+            disabled={!isValid || status}
           >
             Log In
           </Button>

@@ -2,16 +2,14 @@ import { React, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
 
-// import { Container } from '@mui/material';
 import style from './Home.module.scss';
 
-import MainSlider from '../../components/Smart/MainSlider/MainSlider';
-import Marquee from '../../components/Simple/Marquee/Marquee';
-import MobiStoreInfo from '../../components/Simple/MobiStoreInfoSection/MobiStoreInfo';
-import SpecialOfferSec from '../../components/Simple/SpecialOfferSection/SpecialOfferSec';
+import MainSlider from '../../components/Ordinary/MainSlider/MainSlider';
+import MobiStoreInfo from '../../components/Ordinary/MobiStoreInfoSection/MobiStoreInfo';
+import SpecialOfferSec from '../../components/Ordinary/SpecialOfferSection/SpecialOfferSec';
 import AccessoriesInfo from '../../components/Simple/AccessoriesInfoSection/AccessoriesInfo';
 import VideoSec from '../../components/Simple/videoSection/VideoSec';
-import TradeInSec from '../../components/Simple/TradeInSection/TradeInSec';
+import TradeInSec from '../../components/Ordinary/TradeInSection/TradeInSec';
 
 function HomePage({ aboutUs }) {
   const infoRef = useRef(null);
@@ -28,9 +26,7 @@ function HomePage({ aboutUs }) {
 
   return (
     <div className={style.homePage}>
-      <Marquee content="Sell-out!!!" />
       <MainSlider />
-      <Marquee stream="right" content="Sell-out!!!" />
       <TradeInSec />
       <VideoSec />
       <AccessoriesInfo />

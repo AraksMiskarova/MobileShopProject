@@ -17,11 +17,12 @@
     margin-left: 15px;
     width: 100%;
     height: 100%;
+
     .typography {
-      display: flex;
       font-family: 'montserrat', sans-serif;
       display: flex;
       flex-direction: column;
+
       span {
         font-weight: 600;
         font-size: 25px;
@@ -64,7 +65,7 @@
       align-items: center;
       justify-content: center;
       margin-top: auto;
-      margin-bottom: 0px;
+      margin-bottom: 0;
 
       a {
         text-decoration: none;
@@ -90,17 +91,19 @@
   .cardContentSkeleton {
     display: flex;
   }
+
   .cardContentSkeleton span:last-child {
     margin-left: auto;
-    margin-right: 0px;
+    margin-right: 0;
   }
+
   .cardButtonSkeleton {
     display: flex;
   }
 
   .cardButtonSkeleton span:last-child {
     margin-left: auto;
-    margin-right: 0px;
+    margin-right: 0;
   }
 }
 

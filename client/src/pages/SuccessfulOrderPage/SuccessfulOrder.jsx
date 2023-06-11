@@ -24,7 +24,7 @@ function SuccessfulOrder() {
             Thank you for your shopping at MobiStore!
           </Typography>
         </Grid>
-        <Grid item className={style.mapWrapp} textAlign="center">
+        <Grid item style={{ overflow: 'hidden' }} textAlign="center">
           <img src="/logo2.png" alt="" className={style.img} />
         </Grid>
       </Grid>

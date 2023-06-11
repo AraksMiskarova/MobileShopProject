@@ -8,8 +8,8 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
-import { fetchUserData } from '../../redux/slices/registr';
-import { fetchUserToken } from '../../redux/slices/auth';
+import { fetchUserData } from '../../redux/slices/registration';
+import { fetchUserToken } from '../../redux/slices/authorization';
 
 import style from './SigInPage.module.scss';
 

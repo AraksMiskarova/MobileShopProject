@@ -18,7 +18,10 @@ function AccessoriesInfo() {
         <h2>
           <span>MobiStore</span> can also offer accessories for every taste!
         </h2>
-        <NavLink className={style.link}>
+        <NavLink
+          className={style.link}
+          to="/products/filter?categories=accessories"
+        >
           <ButtonDark label="See more" />
         </NavLink>
         <div

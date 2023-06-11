@@ -1,33 +1,48 @@
-import { React, useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { React, useEffect, useState } from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
-import Navbar from './components/Smart/Navbar/Navbar';
+import Navbar from './components/MultiComponentsIC/Navbar/Navbar';
 import Footer from './components/Simple/Footer/Footer';
-import HomePage from './pages/HomePage/HomePage';
 import CheckoutPage from './pages/Checkout/CheckoutPage';
+import ContactPage from './pages/ContactPage/ContactPage';
+import HomePage from './pages/HomePage/HomePage';
 import ItemCardPage from './pages/ItemCardPage/ItemCardPage';
 import ItemsListPage from './pages/ItemsListPage/ItemsListPage';
-import WishlistPage from './pages/WishlistPage/WishlistPage';
-import LogInPage from './pages/LogInPage/LogInPage';
-import SigInPage from './pages/SigInPage/SigInPage';
 import LoadingPage from './pages/LoadingPage/LoadingPage';
-import ContactPage from './pages/ContactPage/ContactPage';
+import LogInPage from './pages/LogInPage/LogInPage';
+import ManageProducts from './pages/Manage/ManageProducts';
+import SigInPage from './pages/SigInPage/SigInPage';
 import SuccessfulOrder from './pages/SuccessfulOrderPage/SuccessfulOrder';
+import WishlistPage from './pages/WishlistPage/WishlistPage';
 
-import { setSelectedProducts } from './redux/slices/shopping-cart';
+import { fetchCartProducts } from './redux/slices/cartBackEnd';
+import { setSelectedProducts } from './redux/slices/cartLocal';
 import { setSelectedProductsFav } from './redux/slices/wishList';
-import { fetchCartProducts } from './redux/slices/cartBack';
+
+import { isToken } from './helpers/authentication/authentication';
+import { fetchCustomerData } from './redux/slices/customer';
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isAuth = Boolean(localStorage.getItem('token'));
-  const bearer = localStorage.getItem('token');
+  const isHaveToken = isToken();
 
   useEffect(() => {
-    if (isAuth && bearer) {
-      dispatch(fetchCartProducts(bearer));
+    if (isHaveToken) {
+      dispatch(fetchCustomerData())
+        .then(customer => {
+          dispatch(fetchCartProducts());
+          const customerData = JSON.stringify(customer.payload._id);
+          window.localStorage.setItem('customer', customerData);
+        })
+        .catch(error => {
+          console.warn('Error fetching customer data:', error);
+          window.localStorage.removeItem('token');
+          window.localStorage.removeItem('customer');
+          navigate('/login');
+        });
     }
   }, []);
 
@@ -65,6 +80,7 @@ function App() {
         <Route path="/signup" element={<SigInPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/successful-order" element={<SuccessfulOrder />} />
+        <Route path="/manage-products" element={<ManageProducts />} />
       </Routes>
       <Footer />
     </>

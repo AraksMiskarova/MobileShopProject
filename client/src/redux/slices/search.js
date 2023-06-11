@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { createAsyncReducer } from '../../helpers/toolkit/extraReducers';
 
 export const fetchSearchProduct = createAsyncThunk(
   'auth/fetchSearchProduct',
@@ -16,7 +17,7 @@ export const fetchSearchProduct = createAsyncThunk(
 
 const initialState = {
   searchProducts: null,
-  searchStatus: 'loading',
+  status: 'loading',
 };
 
 const searchSlice = createSlice({
@@ -25,30 +26,18 @@ const searchSlice = createSlice({
 
   extraReducers: builder => {
     builder
-      .addCase(fetchSearchProduct.pending, state => {
-        const newState = {
-          ...state,
-          searchStatus: 'loading',
-          searchProducts: null,
-        };
-        return newState;
-      })
-      .addCase(fetchSearchProduct.fulfilled, (state, action) => {
-        const newState = {
-          ...state,
-          searchStatus: 'loaded',
-          searchProducts: action.payload,
-        };
-        return newState;
-      })
-      .addCase(fetchSearchProduct.rejected, state => {
-        const newState = {
-          ...state,
-          searchStatus: 'error',
-          searchProducts: null,
-        };
-        return newState;
-      });
+      .addCase(
+        fetchSearchProduct.pending,
+        createAsyncReducer('searchProducts').pending,
+      )
+      .addCase(
+        fetchSearchProduct.fulfilled,
+        createAsyncReducer('searchProducts').fulfilled,
+      )
+      .addCase(
+        fetchSearchProduct.rejected,
+        createAsyncReducer('searchProducts').rejected,
+      );
   },
 });
 

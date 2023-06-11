@@ -16,7 +16,7 @@ function ButtonsCheckoutPage({
       variant={variant}
       onClick={onClick}
       style={{
-        minWidth: 150,
+        minWidth: 170,
         maxWidth: 250,
         margin: '5px auto',
         borderRadius: 2,
