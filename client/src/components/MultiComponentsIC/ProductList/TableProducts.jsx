@@ -46,7 +46,7 @@ function TableProducts({ items }) {
               </TableCell>
               <TableCell align="right">
                 <IconButton edge="end" aria-label="comments">
-                  <DeleteIcon />+
+                  <DeleteIcon />
                 </IconButton>
               </TableCell>
             </TableRow>
