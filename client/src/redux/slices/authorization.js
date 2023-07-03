@@ -12,7 +12,7 @@ export const fetchUserToken = createAsyncThunk(
         },
       });
       const { token, refreshToken } = data;
-      localStorage.setItem('refreshToken', refreshToken);
+      console.log(11111, token, refreshToken);
       return token;
     } catch (error) {
       return error;
