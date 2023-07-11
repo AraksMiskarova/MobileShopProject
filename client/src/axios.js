@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: '',
+  baseURL: 'https://mobileshop-api.onrender.com/',
 });
 
 instance.interceptors.request.use(config => {
