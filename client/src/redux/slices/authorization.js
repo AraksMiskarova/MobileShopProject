@@ -6,11 +6,15 @@ export const fetchUserToken = createAsyncThunk(
   'authorization/fetchUserData',
   async params => {
     try {
-      const { data } = await axios.post('/api/customers/login', params, {
-        headers: {
-          'Content-Type': 'application/json',
+      const { data } = await axios.post(
+        'https://mobileshop-api.onrender.com/api/customers/login',
+        params,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
         },
-      });
+      );
       const { token, refreshToken } = data;
       localStorage.setItem('refreshToken', refreshToken);
       return token;
