@@ -5,6 +5,7 @@ export const fetchUserToken = createAsyncThunk(
   'authorization/fetchUserData',
   async params => {
     try {
+      console.log('run test');
       const { data } = await axios.post(
         'https://mobileshop-api.onrender.com/api/customers/login',
         params,
