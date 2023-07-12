@@ -1,12 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { createAsyncReducer } from '../../helpers/toolkit/extraReducers';
+import instance from '../../api/axiosService';
 
 export const fetchUserToken = createAsyncThunk(
   'authorization/fetchUserData',
   async params => {
     try {
-      const { data } = await axios.post(
+      const { data } = await instance.post(
         'https://mobileshop-api.onrender.com/api/customers/login',
         params,
         {
