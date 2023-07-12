@@ -32,18 +32,15 @@ instance.interceptors.response.use(
 
     if (err.response && err.response.status === 401) {
       const getRefreshToken = TokenService.getLocalRefreshToken();
-      if (getRefreshToken === 'undefined') {
-        // Logout User
-        TokenService.removeLocalRefreshToken();
-        TokenService.removeLocalAccessToken();
-        window.location.href = '/login';
-        return;
-      }
+
       try {
         if (!responsePromise) {
-          responsePromise = axios.post('api/customers/refresh-token', {
-            refreshToken: getRefreshToken,
-          });
+          responsePromise = axios.post(
+            `${process.env.REACT_APP_BASE_URL}/api/customers/refresh-token`,
+            {
+              refreshToken: getRefreshToken,
+            },
+          );
         }
 
         const response = await responsePromise;
