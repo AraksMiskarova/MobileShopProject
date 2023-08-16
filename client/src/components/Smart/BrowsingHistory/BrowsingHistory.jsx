@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
-import { Box, Typography, Grid } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import ListCard from '../ListCard/ListCard';
 
 function BrowsingHistory() {
@@ -15,7 +15,7 @@ function BrowsingHistory() {
   }, []);
 
   const prodQuantity = prodArr <= 0;
-
+  // take out the all styles in a separate object
   return (
     <Box
       sx={{

@@ -1,11 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { Box, Button, Typography } from '@mui/material';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 // import style from './NavIcon.module.scss';
 import ShoppingCart from '../../Simple/ShoppingCart/ShoppingCart';
 
 function CartList({ onClickClose }) {
+  // take out the all styles in a separate object
   return (
     <Box sx={{ maxWidth: 550 }}>
       <Box

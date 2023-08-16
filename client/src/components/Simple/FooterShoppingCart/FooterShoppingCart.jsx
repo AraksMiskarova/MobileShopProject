@@ -1,8 +1,9 @@
 import { Typography } from '@mui/material';
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 
 export default function FooterShoppingCart({ amount }) {
+  // TODO: write styles in object
   return (
     <Typography
       sx={{

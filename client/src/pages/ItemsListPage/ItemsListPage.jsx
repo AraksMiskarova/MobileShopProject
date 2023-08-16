@@ -1,29 +1,29 @@
-import * as React from 'react';
-import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { Grid, Container, useMediaQuery } from '@mui/material';
-import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
+import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
+import { Container, Grid, useMediaQuery } from '@mui/material';
+import * as React from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import {
   filterProdState,
-  setMostPrice,
   setLeastPrice,
+  setMostPrice,
   setViewCount,
 } from '../../redux/slices/filterProducts';
 
 // import { searchState } from '../../redux/slices/search';
 
-import style from './ItemsList.module.scss';
+import AccessoriesAccordion from '../../components/MultiComponentsIC/ProductAccordion/AccessoriesAccordion';
+import PhonesAccordion from '../../components/MultiComponentsIC/ProductAccordion/PhonesAccordion';
 import ListCard from '../../components/Smart/ListCard/ListCard';
 import ListCardSkeleton from '../../components/Smart/ListCard/ListCardSkeleton';
-import PhonesAccordion from '../../components/MultiComponentsIC/ProductAccordion/PhonesAccordion';
-import AccessoriesAccordion from '../../components/MultiComponentsIC/ProductAccordion/AccessoriesAccordion';
 import PaginationRounded from '../../components/Smart/Pagination/Pagination';
+import { fetchCartProducts } from '../../redux/slices/cartBackEnd';
 import { stateSelectedProducts } from '../../redux/slices/cartLocal';
 import { stateSelectedProductsFav } from '../../redux/slices/wishList';
-import { fetchCartProducts } from '../../redux/slices/cartBackEnd';
+import style from './ItemsList.module.scss';
 
 function ItemsListPage() {
   const dispatch = useDispatch();
@@ -77,6 +77,7 @@ function ItemsListPage() {
   const handleLeastPrice = () => {
     dispatch(setLeastPrice());
 
+    // delete setTimeout the add async await
     setTimeout(() => {
       dispatch(fetchCartProducts());
     }, 400);

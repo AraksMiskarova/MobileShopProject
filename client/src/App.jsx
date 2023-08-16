@@ -12,10 +12,10 @@ import ItemsListPage from './pages/ItemsListPage/ItemsListPage';
 import LoadingPage from './pages/LoadingPage/LoadingPage';
 import LogInPage from './pages/LogInPage/LogInPage';
 import ManageProducts from './pages/Manage/ManageProducts';
+import PersonalAccount from './pages/PersonalAccount/PersonalAccount';
 import SigInPage from './pages/SigInPage/SigInPage';
 import SuccessfulOrder from './pages/SuccessfulOrderPage/SuccessfulOrder';
 import WishlistPage from './pages/WishlistPage/WishlistPage';
-import PersonalAccount from './pages/PersonalAccount/PersonalAccount';
 
 import { fetchCartProducts } from './redux/slices/cartBackEnd';
 import { setSelectedProducts } from './redux/slices/cartLocal';
@@ -65,6 +65,9 @@ function App() {
     return () => clearTimeout(timer); // очищаем таймер при размонтировании компонента
   }, []);
   console.log('test');
+
+  // TODO: refactoring component router
+
   return loading ? (
     <LoadingPage />
   ) : (

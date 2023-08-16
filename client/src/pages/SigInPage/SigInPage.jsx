@@ -1,22 +1,22 @@
-import { React, useState } from 'react';
-import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import { React, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate, NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
-import { fetchUserData } from '../../redux/slices/registration';
 import { fetchUserToken } from '../../redux/slices/authorization';
+import { fetchUserData } from '../../redux/slices/registration';
 
-import style from './SigInPage.module.scss';
-import { fetchCustomerData } from '../../redux/slices/customer';
 import {
   fetchAddProductsCart,
   fetchCartProducts,
 } from '../../redux/slices/cartBackEnd';
+import { fetchCustomerData } from '../../redux/slices/customer';
+import style from './SigInPage.module.scss';
 
 function SigInPage() {
   const dispatch = useDispatch();
@@ -37,6 +37,8 @@ function SigInPage() {
       );
     }
 
+    // TODO: write to separate function
+
     if (data.payload && data.payload.name === 'AxiosError') {
       if (data.payload.response && data.payload.response.data.password) {
         setPassError(data.payload.response.data.password);
@@ -55,6 +57,9 @@ function SigInPage() {
       }
       return setStatus(false);
     }
+
+    // TODO: update and rewrite separate function
+    // maybe can add try catch
 
     if (data.payload) {
       const logIn = async () => {

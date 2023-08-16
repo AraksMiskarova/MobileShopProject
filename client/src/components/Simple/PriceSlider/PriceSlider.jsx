@@ -1,15 +1,17 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Slider from '@mui/material/Slider';
+import Typography from '@mui/material/Typography';
+import * as React from 'react';
 
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import {
-  setMinPrice,
   setMaxPrice,
+  setMinPrice,
   setSelectPage,
 } from '../../../redux/slices/filterProducts';
+
+// TODO: not correct using "* React"
 
 export default function NonLinearSlider() {
   const dispatch = useDispatch();

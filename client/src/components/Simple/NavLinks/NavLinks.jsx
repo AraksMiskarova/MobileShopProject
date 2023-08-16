@@ -1,12 +1,12 @@
+import MenuIcon from '@mui/icons-material/Menu';
+import { IconButton, Menu, MenuItem, useMediaQuery } from '@mui/material';
+import PropTypes from 'prop-types';
 import { React, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import MenuIcon from '@mui/icons-material/Menu';
-import { useMediaQuery, IconButton, Menu, MenuItem } from '@mui/material';
 
 import ButtonNav from '../../UI/Buttons/ButtonNav/ButtonNav';
-import NavIcon from '../NavIcon/NavIcon';
 import MobileModalSearch from '../MobileModalSearch/MobileModalSearch';
+import NavIcon from '../NavIcon/NavIcon';
 
 import style from './NavLinks.module.scss';
 
@@ -29,7 +29,7 @@ function NavLinks({
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  // TODO: style set to module.scss
   return (
     <div className={style.mainRoot}>
       {!isMobile ? (

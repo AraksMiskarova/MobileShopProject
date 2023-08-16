@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { Close } from '@mui/icons-material';
-import { Box, Button, Typography, Divider } from '@mui/material';
+import { Box, Button, Divider, Typography } from '@mui/material';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import {
@@ -20,6 +20,7 @@ const itemPropType = PropTypes.shape({
 
 const itemsPropType = PropTypes.arrayOf(itemPropType);
 
+// TODO: MUST BE REFACTORING COMPONENT AND CODE!!!
 function ShoppingCartItem({
   buttonDisplay,
   quantityDisplay,

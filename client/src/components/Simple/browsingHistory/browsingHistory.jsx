@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
-import { Box, Typography, Grid } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import ListCard from '../../Smart/ListCard/ListCard';
 
 function BrowsingHistory() {
@@ -15,6 +15,7 @@ function BrowsingHistory() {
     setProdArr(prodBrowsingHistory);
   }, [prodBrowsingHistory]);
 
+  // fix style , set styles in object
   return (
     <Box
       sx={{ width: '100%', backgroundColor: '#ffffff', borderRadius: '10px' }}

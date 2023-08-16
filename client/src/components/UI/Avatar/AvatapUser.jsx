@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { Avatar, Button } from '@mui/material';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 function AvatarUser({
   nameAvatar,
@@ -10,6 +10,8 @@ function AvatarUser({
   isProfil,
 }) {
   const firstLetter = nameAvatar.charAt(0).toUpperCase();
+
+  // take out the all styles in a separate object
 
   return isAuth ? (
     <>

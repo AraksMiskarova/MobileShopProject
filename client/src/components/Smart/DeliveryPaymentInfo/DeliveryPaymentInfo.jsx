@@ -1,28 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
-import { Formik, Form } from 'formik';
-import FormControl from '@mui/material/FormControl';
 import {
-  Radio,
-  RadioGroup,
+  Box,
+  Divider,
   FormControlLabel,
   MenuItem,
+  Radio,
+  RadioGroup,
   Select,
-  Box,
-  Typography,
-  TextField,
-  Divider,
   Stack,
+  TextField,
+  Typography,
   useMediaQuery,
 } from '@mui/material';
+import FormControl from '@mui/material/FormControl';
+import { Form, Formik } from 'formik';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { toggleDrawer } from '../../../redux/slices/cartLocal';
 import {
+  checkoutState,
   updateDeliveryAddress,
   updateDeliveryPaymentStatus,
   updatePaymentInfo,
   updateShipping,
-  checkoutState,
 } from '../../../redux/slices/checkout';
 
 import {
@@ -90,6 +90,9 @@ function DeliveryPaymentInfo({ handelContinue }) {
   // LOGIC Delivery to the post office
 
   const handleDeliveryAddress = event => {
+    // update logic
+    // create object with value
+    // then using keys when you select option
     const { name } = event.target;
     const { value } = event.target;
     const regex = /\d+/g;

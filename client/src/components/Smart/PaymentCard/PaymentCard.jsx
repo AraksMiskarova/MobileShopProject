@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
 import {
   Box,
   Grid,
@@ -8,7 +6,9 @@ import {
   Typography,
   useMediaQuery,
 } from '@mui/material';
-
+import React, { useState } from 'react';
+import styled from 'styled-components';
+// TODO: use module.scss
 const CardWrapper = styled(Box)`
   width: 100%;
   max-width: 520px;

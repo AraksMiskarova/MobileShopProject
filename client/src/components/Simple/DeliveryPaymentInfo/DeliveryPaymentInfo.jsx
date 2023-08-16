@@ -1,28 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
-import { Formik, Form } from 'formik';
-import FormControl from '@mui/material/FormControl';
 import {
-  Radio,
-  RadioGroup,
+  Box,
+  Divider,
   FormControlLabel,
   MenuItem,
+  Radio,
+  RadioGroup,
   Select,
-  Box,
-  Typography,
-  TextField,
-  Divider,
   Stack,
+  TextField,
+  Typography,
 } from '@mui/material';
-import { toggleDrawer } from '../../../redux/slices/shopping-cart';
+import FormControl from '@mui/material/FormControl';
+import { Form, Formik } from 'formik';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
+  checkoutState,
   updateDeliveryAddress,
   updateDeliveryPaymentStatus,
   updatePaymentInfo,
   updateShipping,
-  checkoutState,
 } from '../../../redux/slices/checkout';
+import { toggleDrawer } from '../../../redux/slices/shopping-cart';
 import ButtonsCheckoutPage from '../../UI/Buttons/ButtonsCheckoutPage/ButtonsCheckoutPage';
 
 function DeliveryPaymentInfo({ handelContinue }) {
@@ -32,6 +32,7 @@ function DeliveryPaymentInfo({ handelContinue }) {
 
   // LOGIC Type delivery
   const [deliveryTypeStatus, setDeliveryTypeStatus] = React.useState(false);
+  // TODO: must be deleted "React"
   React.useEffect(() => {
     if (shipping === 'PostOfficeDelivery') {
       setDeliveryTypeStatus(false);
@@ -100,7 +101,7 @@ function DeliveryPaymentInfo({ handelContinue }) {
       setInputErrorStatus(true);
     }
   };
-
+  // TODO: must be deleted "React"
   React.useEffect(() => {
     if (shipping === 'PostOfficeDelivery') {
       setInputErrorStatus(false);
@@ -127,6 +128,7 @@ function DeliveryPaymentInfo({ handelContinue }) {
 
   const mainStatus = Boolean(deliveryStatus && shipping && paymentInfo);
 
+  // TODO: must be deleted "React"
   React.useEffect(() => {
     if (mainStatus) {
       dispatch(dispatch(updateDeliveryPaymentStatus(true)));

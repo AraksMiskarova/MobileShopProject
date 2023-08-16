@@ -1,17 +1,18 @@
-import { React, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Box, Grid, TextField } from '@mui/material';
-import { Form, Formik, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { React, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateFormStatus } from '../../../redux/slices/checkout';
+import { useNavigate } from 'react-router-dom';
+import * as Yup from 'yup';
 import { isAuthenticated } from '../../../helpers/authentication/authentication';
+import { updateFormStatus } from '../../../redux/slices/checkout';
 import {
   customerState,
   fetchCustomerData,
 } from '../../../redux/slices/customer';
 import ButtonDark from '../../UI/Buttons/ButtonDark/ButtonDark';
 
+// TODO: refactoring component and  code
 function ProfileContacts() {
   const dispatch = useDispatch();
   const navigate = useNavigate();

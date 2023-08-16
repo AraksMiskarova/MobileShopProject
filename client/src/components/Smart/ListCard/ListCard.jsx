@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import {
   Card,
   CardContent,
   CardMedia,
-  Typography,
   Grid,
   Stack,
+  Typography,
   useMediaQuery,
 } from '@mui/material';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import ButtonDark from '../../UI/Buttons/ButtonDark/ButtonDark';
 import style from './ListCard.module.scss';
 
@@ -129,6 +129,8 @@ function ListCard({
   }, [selectedProducts, isAuth, productsCartBack, product.itemNo]);
 
   // Logic added BrowsingHistory
+
+  // rewrite and use data in url
 
   const handleAddBrowsingHistory = () => {
     const prodBrowsingHistory = JSON.parse(
